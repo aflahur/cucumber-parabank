@@ -1,6 +1,8 @@
 package StepDef;
 
 import config.env_target;
+import pages.homePage;
+import pages.registerPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -29,7 +31,9 @@ public class ParabankRegister extends env_target {
 
     @When("User click register link button")
     public void userClickRegisterLinkButton() {
-        driver.findElement(By.xpath("//a[contains(@href,'register')]")).click();
+//        driver.findElement(By.xpath("//a[contains(@href,'register')]")).click();
+        homePage homePages = new homePage(driver);
+        homePages.clickRegister();
     }
 
     @Then("User is in register page")
@@ -43,10 +47,8 @@ public class ParabankRegister extends env_target {
 
     @When("User input name")
     public void userInputName() {
-        //User input firstname
-        driver.findElement(By.id("customer.firstName")).sendKeys("aflahur");
-        //User input lastname
-        driver.findElement(By.name("customer.lastName")).sendKeys("Indo");
+        registerPage inputName = new registerPage(driver);
+        inputName.inputNameData("aflahur","indo");
     }
 
     @And("User input address detail")
